@@ -117,17 +117,10 @@ sched
 # save schedule
 saveRDS(sched, "data/pfr_schedule.rds")
 
-# test on one game
-scrape_game(sched %>% dplyr::slice(1))
-xml2::read_html("raw/1994_01_ATL_DET.html")
-
 # save all the games
 purrr::walk(
-  926 : nrow(sched), 
+  1 : nrow(sched), 
   ~{scrape_game(sched %>% dplyr::slice(.x))}
   )
 
-# how to read the game
-game_html <- xml2::read_html("raw/1994_01_ATL_DET.html")
 
-game_html
